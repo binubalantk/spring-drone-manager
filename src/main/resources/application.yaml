@@ -1,0 +1,32 @@
+spring:
+    application:
+        name: DroneManager-local
+    database:
+        host: localhost
+        port: 3546
+        username: root
+        password:
+server:
+    port: 8080
+
+debug: true
+logging:
+    path: ./logs
+    level:
+        root: ERROR
+
+---
+spring:
+    profiles: dev
+    application:
+        name: DroneManager-dev
+server:
+    port: 9090
+
+---
+spring:
+    profiles: prod
+    application:
+        name: DroneManager
+server:
+    port: 80

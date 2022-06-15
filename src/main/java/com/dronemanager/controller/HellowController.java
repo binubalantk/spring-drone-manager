@@ -1,6 +1,6 @@
 package com.dronemanager.controller;
 
-import com.dronemanager.core.DatabaseConfig;
+import com.dronemanager.configurations.DatabaseConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

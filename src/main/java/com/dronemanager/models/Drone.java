@@ -1,16 +1,28 @@
 package com.dronemanager.models;
 
-import com.dronemanager.constants.DroneType;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "drone_tbl")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "drone_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "Drone")
 public class Drone {
-    private String id;
-    private String name;
-    private DroneType droneType;
 
-    public Drone(String id, String name, DroneType droneType) {
+    @Id
+    @GeneratedValue(generator = "hibernate-uuid")
+    @GenericGenerator(name = "hibernate-uuid", strategy = "uuid2")
+    @Column(name = "drone_id", unique = true, nullable = false)
+    private String id;
+
+    @Column(name = "drone_name", nullable = false)
+    private String name;
+
+    public Drone(String id, String name) {
         this.id = id;
         this.name = name;
-        this.droneType = droneType;
     }
 
     public Drone() {
@@ -30,13 +42,5 @@ public class Drone {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public DroneType getDroneType() {
-        return droneType;
-    }
-
-    public void setDroneType(DroneType droneType) {
-        this.droneType = droneType;
     }
 }
